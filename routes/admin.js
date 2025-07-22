@@ -8,6 +8,6 @@ const adminControllers = require("../controllers/adminControllers")
 
 routes.get("/", adminControllers.home)
 
-
+routes.get("/admin_table", adminControllers.adminTable)
 
 module.exports = routes
