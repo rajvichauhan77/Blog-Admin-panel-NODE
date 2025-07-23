@@ -32,6 +32,14 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+                <div >
+                  <form action="/SearchAdminData" class="px-5 my-3 d-flex">
+
+                      <input type="text" name="adminSearch" class="form-control " placeholder="Searching..." name="searchAdminData"  id="searchAdminData" />
+                  <button type="submit" class="btn btn-success text-white">Search</button>
+                  </form>
+                </div>
+
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -54,21 +62,21 @@
                                     </tr>
                                   </thead>
                                    <tbody>
-                                    
+                                    <% data.map((ele, index) => { %>
                                       <tr>
-                                        <td scope="col">1</td>
-                                        <td scope="col">name </td>
-                                        <td scope="col">email </td>
-                                        <td scope="col">password</td>
-                                        <td scope="col">phone </td>
-                                        <td scope="col">gender </td>
-                                        <td scope="col">city </td>
-                                        <td scope="col">hobbies</td>
+                                        <td scope="col"><%= index+1 %></td>
+                                        <td scope="col"><%= ele.name %></td>
+                                        <td scope="col"><%= ele.email %></td>
+                                        <td scope="col"><%= ele.password%></td>
+                                        <td scope="col"><%= ele.phone %></td>
+                                        <td scope="col"><%= ele.gender %></td>
+                                        <td scope="col"><%= ele.city %></td>
+                                        <td scope="col"><%= ele.hobbies.join(",")%></td>
                                         <td scope="col">
-                                         
+                                          <img src="<%= ele.avatar %>" width="100px" />
                                         </td>
                                         <td scope="col">
-                                          <a class="mr-4" href="/edit_admin">
+                                          <a class="mr-4" href="/edit_admin?userId=<%= ele.id %>">
                                             <i class=" fas fa-pencil-alt font-20"></i>
                                           </a>
                                           <a class="mr-4">
@@ -76,7 +84,11 @@
                                           </a>
                                         </td>
                                       </tr>
-                                   
+                                    <% })%>
+
+                                      
+
+
                                   </tbody>
                             </table>
                         </div>
