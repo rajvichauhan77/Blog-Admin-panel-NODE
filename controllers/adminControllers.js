@@ -6,11 +6,24 @@ const home = async (req, res) => {
 
 const adminTable = async (req, res) => {
     try {
+      let page = parseInt(req.query.page) || 0;
+        let perPage = 2;
+
         let data = await adminTbl.find()
+            .skip(perPage * page)
+            .limit(perPage);
+
+        let totalRecord = await adminTbl.countDocuments();
+        let totalPage = Math.ceil(totalRecord / perPage);
+
         return res.render("admin_table", {
             data,
-            admin: req.currentUser
-        })
+            admin: req.currentUser,
+            totalPage,
+            currentPage: page,
+            search: ""
+        });
+
     } catch (error) {
         console.log(error)
     }
@@ -76,6 +89,18 @@ const updateAdmin = async (req,res) => {
     }
 }
 
+const deleteAdmin = async (req, res) => {
+    try {
+        let id = req.params.id;
+        await adminTbl.findByIdAndDelete(id);
+        return res.redirect("/admin_table");
+    } catch (error) {
+        console.log("Delete Error:", error);
+        return res.status(500).send("Failed to delete admin");
+    }
+};
+
+
 
 
 const SearchAdminData = async (req,res) => {
@@ -110,9 +135,12 @@ const SearchAdminData = async (req,res) => {
 
         console.log(searchAllRecord)
         return res.render("admin_table", {
-            'data': searchAllRecord,totalPage
+            data: searchAllRecord,
+            totalPage,
+            currentPage: parseInt(page),
+            search: search
+        });
 
-        })
 
     } catch (error) {
         console.log(error)
@@ -122,4 +150,4 @@ const SearchAdminData = async (req,res) => {
 
 
 
-module.exports = {home, adminTable, adminForm, insertAdmin, editAdmin, updateAdmin, SearchAdminData}
+module.exports = {home, adminTable, adminForm, insertAdmin, editAdmin, updateAdmin, SearchAdminData, deleteAdmin}

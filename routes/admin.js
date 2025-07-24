@@ -32,6 +32,8 @@ routes.get("/edit_admin", adminControllers.editAdmin)
 
 routes.post("/updateAdmin/:id", avatarImage, adminControllers.updateAdmin)
 
+routes.get("/delete_admin/:id", adminControllers.deleteAdmin)
+
 routes.get("/SearchAdminData", adminControllers.SearchAdminData)
 
 module.exports = routes
