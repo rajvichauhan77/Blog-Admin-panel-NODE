@@ -1,0 +1,12 @@
+<%- include("header") %>
+<div class="container mt-5">
+  <h3>Add Category</h3>
+  <form action="/insert_category" method="POST">
+    <div class="form-group">
+      <label for="name">Category Name</label>
+      <input type="text" class="form-control" id="name" name="name" required />
+    </div>
+    <button type="submit" class="btn btn-warning mt-2">Add Category</button>
+  </form>
+</div>
+<%- include("footer") %>

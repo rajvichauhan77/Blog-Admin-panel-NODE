@@ -13,6 +13,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use("/", express.static(path.join(__dirname, "public")))
 
 app.use("/", require("./routes/admin"))
+// app.use("/category", categoryRoutes);
+// const categoryRoutes = require("./routes/categoryRoutes");
 
 app.use("/uploads", express.static(path.join(__dirname, "ulpoads")))
 
