@@ -1,12 +1,82 @@
+
+
+
 <%- include("header") %>
-<div class="container mt-5">
-  <h3>Add Category</h3>
-  <form action="/insert_category" method="POST">
-    <div class="form-group">
-      <label for="name">Category Name</label>
-      <input type="text" class="form-control" id="name" name="name" required />
+
+<div class="page-wrapper">
+  <div class="page-breadcrumb">
+    <div class="row">
+      <div class="col-12 d-flex no-block align-items-center">
+        <h4 class="page-title">Add Category</h4>
+        <div class="ml-auto text-right">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Add Category</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
     </div>
-    <button type="submit" class="btn btn-warning mt-2">Add Category</button>
-  </form>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <form
+            class="form-horizontal"
+            action="/category/insert_category"
+
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <div class="card-body">
+              <h4 class="card-title">Category Info</h4>
+
+              <!-- Name Input -->
+              <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label">Name</label>
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    placeholder="Enter Category Name"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!-- Image Upload -->
+              <div class="form-group row">
+                <label class="col-sm-3 text-right control-label col-form-label">Image</label>
+                <div class="col-sm-9">
+                  <div class="custom-file">
+                    <input
+                      type="file"
+                      class="custom-file-input"
+                      name="image"
+                      id="categoryImage"
+                      required
+                    />
+                    <label class="custom-file-label" for="categoryImage">Choose file...</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="border-top">
+              <div class="card-body">
+                <button type="submit" class="btn btn-success">Add Category</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
 <%- include("footer") %>

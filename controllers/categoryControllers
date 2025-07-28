@@ -1,0 +1,86 @@
+const categoryTbl = require("../models/categoryTbl");
+
+const categoryForm = async (req, res) => {
+    res.render("category_form");
+};
+
+const categoryTable = async (req, res) => {
+  try {
+    const categories = await categoryTbl.find();
+    res.render("category_table", { categories });
+  } catch (err) {
+    console.log(err);
+    res.send("Error loading category table");
+  }
+};
+
+const insertCategory = async (req, res) => {
+  try {
+    const { name } = req.body;
+    const image = req.file ? "/uploads/category/" + req.file.filename : null;
+
+    await categoryTbl.create({ name, image });
+    res.redirect("/category/category_view"); // fixed here
+  } catch (error) {
+    console.log(error);
+    res.send("Error inserting category");
+  }
+};
+
+
+const categoryView = async (req, res) => {
+    try {
+        let categories = await categoryTbl.find();
+        res.render("category_table", { categories });
+    } catch (error) {
+        console.log(error);
+        res.send("Error displaying categories");
+    }
+};
+
+
+const editCategory = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const category = await categoryTbl.findById(id);
+    if (!category) {
+      return res.send("Category not found");
+    }
+    res.render("edit_category", { category });
+  } catch (error) {
+    console.log(error);
+    res.send("Error loading category for edit");
+  }
+};
+
+const updateCategory = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { name } = req.body;
+    let updateData = { name };
+
+    if (req.file) {
+      updateData.image = "/uploads/category/" + req.file.filename;
+    }
+
+    await categoryTbl.findByIdAndUpdate(id, updateData);
+    res.redirect("/category/category_view");
+  } catch (error) {
+    console.log(error);
+    res.send("Error updating category");
+  }
+};
+
+
+const deleteCategory = async (req, res) => {
+  try {
+    await categoryTbl.findByIdAndDelete(req.params.id);
+    res.redirect("/category/category_view");
+  } catch (error) {
+    console.log(error);
+    res.send("Error deleting category");
+  }
+};
+
+
+module.exports = { categoryForm, insertCategory, categoryView , categoryTable, editCategory, updateCategory, deleteCategory};

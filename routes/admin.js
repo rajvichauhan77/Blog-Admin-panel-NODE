@@ -18,6 +18,8 @@ let avatarImage = multer({storage: uploadAvatar}).single("avatar")
 
 
 const adminControllers = require("../controllers/adminControllers")
+const categoryControllers = require("../controllers/categoryControllers")
+const router = require("./categoryRoutes")
 
 routes.get("/", adminControllers.home)
 
@@ -35,5 +37,7 @@ routes.post("/updateAdmin/:id", avatarImage, adminControllers.updateAdmin)
 routes.get("/delete_admin/:id", adminControllers.deleteAdmin)
 
 routes.get("/SearchAdminData", adminControllers.SearchAdminData)
+
+routes.get("/category_form", categoryControllers.categoryForm);
 
 module.exports = routes
