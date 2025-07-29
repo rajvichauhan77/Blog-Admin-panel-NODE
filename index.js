@@ -1,30 +1,52 @@
-const express = require("express")
-const path = require("path")
-const db = require("./config/db")
+const express = require("express");
+const path = require("path");
+const app = express();
+const session = require("express-session");
+const passport = require("passport");
 
-const port = 8000
+// Connect DB
+const db = require("./config/db");
 
-const app = express()
+// Load Passport strategy
+require("./config/passport-local-strategy");
 
-app.set("view engine", "ejs")
+const port = 8000;
 
-app.use(express.urlencoded({ extended: true }))
+// Set view engine
+app.set("view engine", "ejs");
 
-app.use("/", express.static(path.join(__dirname, "public")))
+// Body parser
+app.use(express.urlencoded({ extended: true }));
 
-app.use("/", require("./routes/admin"))
+// Static files
+app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// ✅ Use session middleware BEFORE passport
+app.use(session({
+    name: "RWBN",
+    secret: "RWBN",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60
+    }
+}));
+
+// ✅ Initialize passport and session
+app.use(passport.initialize());
+app.use(passport.session());
+
+// ✅ Then add routes
+app.use("/", require("./routes/admin"));
 const categoryRoutes = require("./routes/categoryRoutes");
 app.use("/category", categoryRoutes);
 
-
-// ✅ Correct
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-
+// Start server
 app.listen(port, (err) => {
-    if(err){
-        console.log(err)
-        return false
+    if (err) {
+        console.log(err);
+        return false;
     }
-    console.log("server is connected to port " + port)
-})
+    console.log("server is connected to port " + port);
+});

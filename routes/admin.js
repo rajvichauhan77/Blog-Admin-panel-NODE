@@ -21,7 +21,13 @@ const adminControllers = require("../controllers/adminControllers")
 const categoryControllers = require("../controllers/categoryControllers")
 const router = require("./categoryRoutes")
 
-routes.get("/", adminControllers.home)
+const passport = require("passport")
+
+routes.get("/", adminControllers.adminLogin)
+
+routes.post("/checkAdminLogin", passport.authenticate('Adminlocal', {failureRedirect: "/"}), adminControllers.checkAdminLogin)
+
+routes.get("/dashboard", adminControllers.home)
 
 routes.get("/admin_table", adminControllers.adminTable)
 
@@ -37,6 +43,9 @@ routes.post("/updateAdmin/:id", avatarImage, adminControllers.updateAdmin)
 routes.get("/delete_admin/:id", adminControllers.deleteAdmin)
 
 routes.get("/SearchAdminData", adminControllers.SearchAdminData)
+
+
+
 
 routes.get("/category_form", categoryControllers.categoryForm);
 

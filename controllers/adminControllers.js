@@ -1,5 +1,26 @@
 const adminTbl = require("../models/adminTbl")
 
+const adminLogin = async (req, res) => {
+    try{
+        return res.render("adminLogin")
+    }
+    catch(error){
+        console.log(error)
+        return res.redirect("/admin")
+    }
+}
+
+const checkAdminLogin = async (req, res) => {
+    try {
+        console.log("req.body")
+        return res.redirect("/dashboard")
+    }
+    catch{
+         console.log(error)
+        return res.redirect("/admin")
+    }
+}
+
 const home = async (req, res) => {
     return res.render("home")
 }
@@ -150,4 +171,4 @@ const SearchAdminData = async (req,res) => {
 
 
 
-module.exports = {home, adminTable, adminForm, insertAdmin, editAdmin, updateAdmin, SearchAdminData, deleteAdmin}
+module.exports = {home, adminTable, adminForm, insertAdmin, editAdmin, updateAdmin, SearchAdminData, deleteAdmin, adminLogin, checkAdminLogin   }
