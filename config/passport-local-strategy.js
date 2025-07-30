@@ -10,14 +10,14 @@ passport.use('Adminlocal', new localStrategy({
     let user = await Admin.findOne({ email: email });
 
 if (!user) {
-    return done(null, false); // user not found
+    return done(null, false); 
 }
 
 if (user.password !== password) {
-    return done(null, false); // wrong password
+    return done(null, false); 
 }
 
-return done(null, user); // success
+return done(null, user); 
 
         
 }))
@@ -41,6 +41,14 @@ passport.deserializeUser(async function(id, done) {
         return done(err);
     }
 });
+
+passport.setAuth = function(req, res, next) {
+    if (req.isAuthenticated()) {
+        res.locals.user = req.user;
+        
+    }
+    next();
+};
 
 
 

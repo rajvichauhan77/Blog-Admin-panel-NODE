@@ -1,5 +1,16 @@
 const adminTbl = require("../models/adminTbl")
 
+const adminProfile = async (req, res) => {
+    try{
+        return res.render("adminProfile")
+    }
+    catch{
+        console.log(error)
+        return res.redirect("/admin")
+    }
+}
+
+
 const adminLogin = async (req, res) => {
     try{
         return res.render("adminLogin")
@@ -22,8 +33,11 @@ const checkAdminLogin = async (req, res) => {
 }
 
 const home = async (req, res) => {
-    return res.render("home")
-}
+    return res.render("home", {
+       admin: req.session.admin || null
+    });
+};
+
 
 const adminTable = async (req, res) => {
     try {
@@ -171,4 +185,4 @@ const SearchAdminData = async (req,res) => {
 
 
 
-module.exports = {home, adminTable, adminForm, insertAdmin, editAdmin, updateAdmin, SearchAdminData, deleteAdmin, adminLogin, checkAdminLogin   }
+module.exports = {home, adminTable, adminForm, insertAdmin, editAdmin, updateAdmin, SearchAdminData, deleteAdmin, adminLogin, checkAdminLogin , adminProfile }

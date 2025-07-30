@@ -44,8 +44,17 @@ routes.get("/delete_admin/:id", adminControllers.deleteAdmin)
 
 routes.get("/SearchAdminData", adminControllers.SearchAdminData)
 
+routes.get("/adminProfile",  adminControllers.adminProfile)
 
-
+routes.get("/adminLogout", async (req, res) => {
+    req.logout(function(err) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+          return res.redirect("/");  
+    })
+})
 
 routes.get("/category_form", categoryControllers.categoryForm);
 

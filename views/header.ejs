@@ -22,7 +22,10 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    
 <![endif]-->
+
+
 </head>
 
 <body>
@@ -165,6 +168,66 @@
                   <a class="srh-btn"><i class="mdi mdi-window-close"></i></a>
                 </form>
               </li>
+
+              <!-- My Profile -->
+
+               <li class="nav-item dropdown">
+                <a
+                  class="
+                    nav-link
+                    dropdown-toggle
+                    text-muted
+                    waves-effect waves-dark
+                    pro-pic
+                  "
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="<%= locals.user.avatar %>"
+                    alt="user"
+                    class="rounded-circle"
+                    width="25"
+                    height="25"
+                  />
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-end user-dd animated"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <a class="dropdown-item" href="javascript:void(0)"
+                    ><i class="mdi mdi-account me-1 ms-1"></i> <%= user.name %>
+</a
+                  >
+                  <a class="dropdown-item" href="javascript:void(0)"
+                    ><i class="mdi mdi-wallet me-1 ms-1"></i> Change Password</a
+                  >
+                  <a class="dropdown-item" href="javascript:void(0)"
+                    ><i class="mdi mdi-email me-1 ms-1"></i> Inbox</a
+                  >
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="javascript:void(0)"
+                    ><i class="mdi mdi-settings me-1 ms-1"></i> Account
+                    Setting</a
+                  >
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/adminLogout"
+                    ><i class="fa fa-power-off me-1 ms-1"></i> Logout</a
+                  >
+                  <div class="dropdown-divider "></div>
+                  <div class="ps-4 p-10">
+                    <a
+                      href="/adminProfile"
+                      class="btn btn-sm btn-success btn-rounded text-white"
+                      >View Profile</a
+                    >
+                  </div>
+                </ul>
+              </li>
+
             </ul>
             <!-- ============================================================== -->
             <!-- Right side toggle and nav items -->
