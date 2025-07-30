@@ -137,7 +137,6 @@ const deleteAdmin = async (req, res) => {
 
 
 
-
 const SearchAdminData = async (req,res) => {
     try {
         let search = ''
