@@ -1,4 +1,5 @@
 const adminTbl = require("../models/adminTbl")
+const nodemailer = require("nodemailer");
 
 const adminProfile = async (req, res) => {
     try{
@@ -183,5 +184,34 @@ const SearchAdminData = async (req,res) => {
 }
 
 
+// forgot password routes logic start
 
-module.exports = {home, adminTable, adminForm, insertAdmin, editAdmin, updateAdmin, SearchAdminData, deleteAdmin, adminLogin, checkAdminLogin , adminProfile }
+const sendOTP = async (req, res) => {
+    try {
+        // console.log(req.body)
+        let admin = await adminTbl.findOne({ email: req.body.email });
+        if (admin){
+            const transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+            user: "maddison53@ethereal.email",
+            pass: "jn7jnAPss4f63QBp6D",
+        },
+        });
+        }
+        else{
+            console.log("Invalid email")
+            return res.redirect("/verifyEmail");
+        }
+
+    } catch (error) {
+        console.log("Error in sendOTP:", error);
+    }
+}
+
+// forgot password routes logic end
+
+
+module.exports = {home, adminTable, adminForm, insertAdmin, editAdmin, updateAdmin, SearchAdminData, deleteAdmin, adminLogin, checkAdminLogin , adminProfile, sendOTP }

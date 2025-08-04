@@ -56,6 +56,18 @@ routes.get("/adminLogout", async (req, res) => {
     })
 })
 
+// admin forgot password routes start
+
+routes.get("/verifyEmail", async(req, res) => {
+    return res.render("forgot/verifyEmail")
+})
+
+// admin forgot password routes end
+
 routes.get("/category_form", categoryControllers.categoryForm);
+
+routes.post("/sendOTP", adminControllers.sendOTP);
+
+// routes.use("/blog", require('./blogRoutes'));
 
 module.exports = routes

@@ -70,7 +70,7 @@
             <form method="post"
               class="form-horizontal mt-3"
               id="loginform"
-               action="/checkAdminLogin">
+               action="/sendOTP">
 
             >
               <div class="row pb-4">
@@ -93,43 +93,19 @@
                       required=""
                     />
                   </div>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span
-                        class="input-group-text bg-warning text-white h-100"
-                        id="basic-addon2"
-                        ><i class="mdi mdi-lock fs-4"></i
-                      ></span>
-                    </div>
-                    <input
-                      type="password"
-                      class="form-control form-control-lg"
-                      placeholder="Password"
-                      aria-label="Password"
-                      name="password"
-                      aria-describedby="basic-addon1"
-                      required=""
-                    />
-                  </div>
+                  
                 </div>
               </div>
               <div class="row border-top border-secondary">
                 <div class="col-12">
                   <div class="form-group">
                     <div class="pt-3">
-                      <a href="/verifyEmail">
-                      <button
-                        class="btn btn-info"
-                        
-                        type="button" >
-                        <i class="mdi mdi-lock fs-4 me-1"></i> Lost password?
-                      </button>
-                      </a>
+                    
                       <button
                         class="btn btn-success float-end text-white"
                         type="submit"
                       >
-                        Login
+                        Send OTP
                       </button>
                     </div>
                   </div>
