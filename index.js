@@ -43,6 +43,7 @@ app.use(passport.setAuth);
 app.use("/", require("./routes/admin"));
 const categoryRoutes = require("./routes/categoryRoutes");
 app.use("/category", categoryRoutes);
+const blogRoutes = require("./routes/blogRoutes");
 
 
 app.listen(port, (err) => {

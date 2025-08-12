@@ -36,95 +36,53 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card">
-                            <form class="form-horizontal" action="/insert_admin" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="/blog/insert_blog" method="post" enctype="multipart/form-data">
 
                                 
-                                <div class="card-body">
+                                <div class="card-b                                    ody">
                                     <h4 class="card-title">Personal Info</h4>
-                                    <div class="form-group row">
-                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label"> Name</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="name" id="fname" placeholder=" Name Here">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group row">
-                                        <label for="email1" class="col-sm-3 text-right control-label col-form-label">Email</label>
-                                        <div class="col-sm-9">
-                                            <input type="email" class="form-control" name="email" id="email1" placeholder="Email Address here">
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Password</label>
+                                      <div class="form-group row">
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Category List</label>
                                         <div class="col-sm-9">
-                                            <input type="password" class="form-control" name="password" id="lname" placeholder="Password Here">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Contact No</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="phone" id="cono1" placeholder="Contact No Here">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Message</label>
-                                        <div class="col-sm-9">
-                                            <textarea class="form-control" name="message"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">City</label>
-                                        <div class="col-sm-9">
-                                        <select class="select2 form-control custom-select" name="city" style="width: 100%; height:36px;">
-                                             <% ["--select--", "Alabama", "Arkansas", "Illinois", "Iowa", "Kansas", "Kentucky", "Louisiana", "Minnesota", "Mississippi", "Missouri", "Oklahoma", "South", "Texas", "Tennessee", "Wisconsin"].map((ele) => {%> 
+                                        <select class="select2 form-control custom-select" name="categoryId" style="width: 100%; height:36px;">
+                                                  
+                                            <option >Select</option>
+      
+                                            <% allCategory.map((v) => { %>
+                                            <option value="<%= v._id %>"><%= v.name %></option>
+                                        <% }) %>
 
-                                            <option value="<%= ele %>"><%= ele %></option>
-
-                                          <%  }) %>        
+                                                  
                                         </select>
                                         </div>
                                     </div>
+
+
+                                    <div class="form-group row">
+                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label"> Title</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="title" id="fname" placeholder=" Title">
+                                        </div>
+                                    </div>
+                                    
+                                    
+
+                                    <div class="form-group row">
+                                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Details</label>
+                                        <div class="col-sm-9">
+                                            <textarea class="form-control" name="blogDetails"></textarea>
+                                        </div>
+                                    </div>
+                                    
                                    
-                                 <div class="form-group row">
-                                    <label class="col-sm-3 text-right control-label col-form-label">Gender</label>
-                                    <div class="col-md-9">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="customControlValidation1" value="Male" name="gender" required>
-                                            <label class="custom-control-label" for="customControlValidation1">Male</label>
-                                        </div>
-                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="customControlValidation2" value="female" name="gender" required>
-                                            <label class="custom-control-label" for="customControlValidation2">female</label>
-                                        </div>
-                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="customControlValidation3" value="Others" name="gender" required>
-                                            <label class="custom-control-label" for="customControlValidation3">Others</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-3 text-right control-label col-form-label">Hobbies:</label>
-                                    <div class="col-md-9">
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="hobbies" value="Coding" id="customControlAutosizing1">
-                                            <label class="custom-control-label" for="customControlAutosizing1">Coding</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="hobbies" value="Presentation" id="customControlAutosizing2">
-                                            <label class="custom-control-label" for="customControlAutosizing2">Presentation</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input" name="hobbies" value="Movies" id="customControlAutosizing3">
-                                            <label class="custom-control-label" for="customControlAutosizing3">Movies</label>
-                                        </div>
-                                    </div>
-                                </div>
+                                
+                                
                                 <div class="form-group row">
                                     <label class="col-sm-3 text-right control-label col-form-label">File Upload</label>
                                     <div class="col-md-9">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="avatar" id="validatedCustomFile" required>
+                                            <input type="file" class="custom-file-input" name="blogImage" id="validatedCustomFile" required>
                                             <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
                                             <div class="invalid-feedback">Example invalid custom file feedback</div>
                                         </div>
@@ -178,3 +136,29 @@
             <!-- End Container fluid  -->
 
             <%- include("footer") %>
+
+            <!-- Place the first <script> tag in your HTML's <head> -->
+<script src="https://cdn.tiny.cloud/1/4gf48ergjog6sec87rfgdf4lihrf14aqbep2w0dud6xe4tin/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+
+<!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+<script>
+  tinymce.init({
+    selector: 'textarea',
+    plugins: [
+      // Core editing features
+      'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+      // Your account includes a free trial of TinyMCE premium features
+      // Try the most popular premium features until Aug 26, 2025:
+      'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
+    ],
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+    uploadcare_public_key: 'a5a53239498f4e9e7649',
+  });
+</script>

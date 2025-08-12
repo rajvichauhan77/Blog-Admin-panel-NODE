@@ -68,6 +68,6 @@ routes.get("/category_form", categoryControllers.categoryForm);
 
 routes.post("/sendOTP", adminControllers.sendOTP);
 
-// routes.use("/blog", require('./blogRoutes'));
+ routes.use("/blog", require('./blogRoutes'));
 
 module.exports = routes
